@@ -637,7 +637,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 //            sendMsg(AppConfig.MSG_REGISTER_CLIENT, "")
 //        }
 //    }
-
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_BUTTON_B) {
             moveTaskToBack(false)
