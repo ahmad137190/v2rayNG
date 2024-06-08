@@ -47,8 +47,8 @@
     <string name="server_lab_more_function">Transport</string>
     <string name="server_lab_head_type">head type</string>
     <string name="server_lab_mode_type">gRPC mode</string>
-    <string name="server_lab_request_host">request host(host/ws host/h2 host)/QUIC security</string>
-    <string name="server_lab_path">path(ws path/h2 path)/QUIC key/kcp seed/gRPC serviceName</string>
+    <string name="server_lab_request_host">request host(host/ws host/httpupgrade host/h2 host)/QUIC security/gRPC Authority</string>
+    <string name="server_lab_path">path(ws path/httpupgrade path/h2 path)/QUIC key/kcp seed/gRPC serviceName</string>
     <string name="server_lab_stream_security">TLS</string>
     <string name="server_lab_stream_fingerprint" translatable="false">Fingerprint</string>
     <string name="server_lab_stream_alpn" translatable="false">Alpn</string>
@@ -93,6 +93,7 @@
     <string name="title_user_asset_add_url">Add asset URL</string>
     <string name="msg_file_not_found">File not found</string>
     <string name="msg_remark_is_duplicate">The remarks already exists</string>
+    <string name="toast_action_not_allowed">Action not allowed</string>
 
 
     <!-- PerAppProxyActivity -->
@@ -132,6 +133,8 @@
 
     <string name="title_pref_sniffing_enabled">Enable Sniffing</string>
     <string name="summary_pref_sniffing_enabled">Try sniff domain from the packet (default on)</string>
+    <string name="title_pref_route_only_enabled">Enable routeOnly</string>
+    <string name="summary_pref_route_only_enabled">Use the sniffed domain name for routing only, and keep the target address as the IP address.</string>
 
     <string name="title_pref_local_dns_enabled">Enable local DNS</string>
     <string name="summary_pref_local_dns_enabled">DNS processed by core‘s DNS module (Recommended, if need routing Bypassing LAN and
@@ -148,13 +151,16 @@
     <string name="title_pref_routing_mode">Predefined rules</string>
     <string name="title_pref_routing_custom">Custom rules</string>
 
-    <string name="title_pref_remote_dns">Remote DNS (Optional)</string>
+    <string name="title_pref_remote_dns">Remote DNS (udp/tcp/https/quic)(Optional)</string>
     <string name="summary_pref_remote_dns">DNS</string>
 
     <string name="title_pref_vpn_dns">VPN DNS (only IPv4/v6)</string>
 
     <string name="title_pref_domestic_dns">Domestic DNS (Optional)</string>
     <string name="summary_pref_domestic_dns">DNS</string>
+
+    <string name="title_pref_delay_test_url">True delay test url (http/https)</string>
+    <string name="summary_pref_delay_test_url">Url</string>
 
     <string name="title_pref_proxy_sharing_enabled">Allow connections from the LAN</string>
     <string name="summary_pref_proxy_sharing_enabled">Other devices can connect to proxy by your ip address through socks/http, Only enable in trusted network to avoid unauthorized connection</string>
@@ -183,6 +189,13 @@
     <string name="summary_pref_tg_group">Join Telegram Group</string>
     <string name="toast_tg_app_not_found">Telegram app not found</string>
     <string name="title_privacy_policy">Privacy policy</string>
+    <string name="title_about">About</string>
+    <string name="title_source_code">Source code</string>
+    <string name="title_tg_channel">Telegram channel</string>
+    <string name="title_configuration_backup">Backup configuration</string>
+    <string name="summary_configuration_backup">Storage location: [%s], The backup will be cleared after uninstalling the app or clearing the storage</string>
+    <string name="title_configuration_restore">Restore configuration</string>
+    <string name="title_configuration_share">Share configuration</string>
 
     <string name="title_pref_promotion">Promotion</string>
     <string name="summary_pref_promotion">Promotion,click for details(Donation can be removed)</string>
@@ -196,6 +209,7 @@
     <string name="title_mode_help">Click me for more help</string>
     <string name="title_language">Language</string>
     <string name="title_ui_settings">UI settings</string>
+    <string name="title_pref_ui_mode_night">UI mode settings</string>
 
     <string name="title_logcat">Logcat</string>
     <string name="logcat_copy">Copy</string>
@@ -275,6 +289,12 @@
     <string-array name="mode_entries">
         <item>VPN</item>
         <item>Proxy only</item>
+    </string-array>
+
+    <string-array name="ui_mode_night">
+        <item>Follow system</item>
+        <item>Light</item>
+        <item>Dark</item>
     </string-array>
 
 </resources>

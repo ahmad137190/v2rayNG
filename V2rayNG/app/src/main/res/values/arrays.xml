@@ -25,6 +25,7 @@
         <item>tcp</item>
         <item>kcp</item>
         <item>ws</item>
+        <item>httpupgrade</item>
         <item>h2</item>
         <item>quic</item>
         <item>grpc</item>
@@ -62,6 +63,9 @@
 
     <string-array name="fragment_packets" translatable="false">
         <item>tlshello</item>
+        <item>1-2</item>
+        <item>1-3</item>
+        <item>1-5</item>
     </string-array>
 
     <string-array name="streamsecurity_utls" translatable="false">
@@ -191,5 +195,11 @@
         <item>reject</item>
         <item>allow</item>
         <item>skip</item>
+    </string-array>
+
+    <string-array name="ui_mode_night_value" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
     </string-array>
 </resources>
