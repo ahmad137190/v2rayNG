@@ -11,18 +11,22 @@ android {
         applicationId = "com.v2ray.ang.test"
         minSdk = 21
         targetSdk = 34
-        versionCode = 562
-        versionName = "1.8.25"
+        versionCode = 580
+        versionName = "1.8.36"
         multiDexEnabled = true
-        splits.abi {
-            reset()
-            include(
-                "arm64-v8a",
-                "armeabi-v7a",
-                "x86_64",
-                "x86"
-            )
+        splits {
+            abi {
+                isEnable = true
+                include(
+                    "arm64-v8a",
+                    "armeabi-v7a",
+                    "x86_64",
+                    "x86"
+                )
+                isUniversalApk = true
+            }
         }
+
     }
 
     compileOptions {
@@ -50,17 +54,10 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
-    splits {
-        abi {
-            isEnable = true
-            isUniversalApk = false
-        }
-    }
-
     applicationVariants.all {
         val variant = this
         val versionCodes =
-            mapOf("armeabi-v7a" to 1, "arm64-v8a" to 2, "x86" to 3, "x86_64" to 4)
+            mapOf("armeabi-v7a" to 4, "arm64-v8a" to 4, "x86" to 4, "x86_64" to 4, "universal" to 4)
 
         variant.outputs
             .map { it as com.android.build.gradle.internal.api.ApkVariantOutputImpl }
@@ -68,7 +65,7 @@ android {
                 val abi = if (output.getFilter("ABI") != null)
                     output.getFilter("ABI")
                 else
-                    "all"
+                    "universal"
 
                 output.outputFileName = "v2rayNG_${variant.versionName}_${abi}.apk"
                 if(versionCodes.containsKey(abi))
@@ -86,47 +83,54 @@ android {
         viewBinding = true
         buildConfig = true
     }
+
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
 }
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.aar","*.jar"))))
-    testImplementation("junit:junit:4.13.2")
+    testImplementation(libs.junit)
 
+    implementation(libs.flexbox)
     // Androidx
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.cardview:cardview:1.0.0")
-    implementation("androidx.preference:preference-ktx:1.2.1")
-    implementation("androidx.recyclerview:recyclerview:1.3.2")
-    implementation("androidx.fragment:fragment-ktx:1.7.1")
-    implementation("androidx.multidex:multidex:2.0.1")
-    implementation("androidx.viewpager2:viewpager2:1.1.0")
+    implementation(libs.constraintlayout)
+    implementation(libs.legacy.support.v4)
+    implementation(libs.appcompat)
+    implementation(libs.material)
+    implementation(libs.cardview)
+    implementation(libs.preference.ktx)
+    implementation(libs.recyclerview)
+    implementation(libs.fragment.ktx)
+    implementation(libs.multidex)
+    implementation(libs.viewpager2)
 
     // Androidx ktx
-    implementation("androidx.activity:activity-ktx:1.9.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.0")
+    implementation(libs.activity.ktx)
+    implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.lifecycle.livedata.ktx)
+    implementation(libs.lifecycle.runtime.ktx)
 
     //kotlin
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.23")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
+    implementation(libs.kotlin.reflect)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 
-    implementation("com.tencent:mmkv-static:1.3.4")
-    implementation("com.google.code.gson:gson:2.10.1")
-    implementation("io.reactivex:rxjava:1.3.8")
-    implementation("io.reactivex:rxandroid:1.2.1")
-    implementation("com.tbruyelle.rxpermissions:rxpermissions:0.9.4@aar")
-    implementation("me.drakeet.support:toastcompat:1.1.0")
-    implementation("com.blacksquircle.ui:editorkit:2.9.0")
-    implementation("com.blacksquircle.ui:language-base:2.9.0")
-    implementation("com.blacksquircle.ui:language-json:2.9.0")
-    implementation("io.github.g00fy2.quickie:quickie-bundled:1.9.0")
-    implementation("com.google.zxing:core:3.5.3")
-
-    implementation("androidx.work:work-runtime-ktx:2.8.1")
-    implementation("androidx.work:work-multiprocess:2.8.1")
+    implementation(libs.mmkv.static)
+    implementation(libs.gson)
+    implementation(libs.rxjava)
+    implementation(libs.rxandroid)
+    implementation(libs.rxpermissions)
+    implementation(libs.toastcompat)
+    implementation(libs.editorkit)
+    implementation(libs.language.base)
+    implementation(libs.language.json)
+    implementation(libs.quickie.bundled)
+    implementation(libs.core)
+    // Updating these 2 dependencies may cause some errors. Be careful.
+    implementation(libs.work.runtime.ktx)
+    implementation(libs.work.multiprocess)
 }
