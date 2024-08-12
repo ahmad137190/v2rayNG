@@ -386,23 +386,27 @@ object AngConfigManager {
 //        }
 //    }
 
-    fun importBatchConfig(server: String?, subid: String, append: Boolean): Int {
-        var count = parseBatchConfig(server, subid, append)
+    fun importBatchConfig(server: String?, subid: String, append: Boolean): Pair<Int, Int>   {
+        var count = parseBatchConfig(Utils.decode(server), subid, append)
         if (count <= 0) {
-            count = parseBatchConfig(Utils.decode(server), subid, append)
+            count = parseBatchConfig(server, subid, append)
         }
         if (count <= 0) {
             count = parseCustomConfigServer(server, subid)
         }
 
-        if (parseBatchSubscription(server, subid) > 0) {
-            updateConfigViaSubAll()
-            return 1
+        var countSub = parseBatchSubscription(server)
+        if (countSub <= 0) {
+            countSub = parseBatchSubscription(Utils.decode(server))
         }
-        return count
+        if (countSub > 0) {
+            updateConfigViaSubAll()
+        }
+
+        return count to countSub
     }
 
-    fun parseBatchSubscription(servers: String?, subid: String): Int {
+    fun parseBatchSubscription(servers: String?): Int {
         try {
             if (servers == null) {
                 return 0
@@ -410,7 +414,6 @@ object AngConfigManager {
 
             var count = 0
             servers.lines()
-                .reversed()
                 .forEach { str ->
                     if (str.startsWith(AppConfig.PROTOCOL_HTTP) || str.startsWith(AppConfig.PROTOCOL_HTTPS)) {
                         count += MmkvManager.importUrlAsSubscription(str)
@@ -488,7 +491,7 @@ object AngConfigManager {
 
                 if (serverList.isNotEmpty()) {
                     var count = 0
-                    for (srv in serverList) {
+                    for (srv in serverList.reversed()) {
                         val config = ServerConfig.create(EConfigType.CUSTOM)
                         config.fullConfig =
                             Gson().fromJson(Gson().toJson(srv), V2rayConfig::class.java)
@@ -560,7 +563,7 @@ object AngConfigManager {
                         settingsStorage?.decodeString(AppConfig.PREF_HTTP_PORT),
                         AppConfig.PORT_HTTP.toInt()
                     )
-                    Utils.getUrlContentWithCustomUserAgent(url, httpPort)
+                    Utils.getUrlContentWithCustomUserAgent(url, 30000, httpPort)
                 } catch (e: Exception) {
                     e.printStackTrace()
                     ""
@@ -577,9 +580,9 @@ object AngConfigManager {
     }
 
     private fun parseConfigViaSub(server: String?, subid: String, append: Boolean): Int {
-        var count = parseBatchConfig(server, subid, append)
+        var count = parseBatchConfig(Utils.decode(server), subid, append)
         if (count <= 0) {
-            count = parseBatchConfig(Utils.decode(server), subid, append)
+            count = parseBatchConfig(server, subid, append)
         }
         if (count <= 0) {
             count = parseCustomConfigServer(server, subid)

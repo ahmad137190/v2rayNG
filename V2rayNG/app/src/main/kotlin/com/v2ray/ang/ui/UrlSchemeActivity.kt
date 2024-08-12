@@ -11,13 +11,11 @@ import com.v2ray.ang.util.AngConfigManager
 import java.net.URLDecoder
 
 class UrlSchemeActivity : BaseActivity() {
-    private lateinit var binding: ActivityLogcatBinding
+    private val binding by lazy { ActivityLogcatBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLogcatBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
 
         try {
             intent.apply {
@@ -64,8 +62,8 @@ class UrlSchemeActivity : BaseActivity() {
         val decodedUrl = URLDecoder.decode(uriString, "UTF-8")
         val uri = Uri.parse(decodedUrl)
         if (uri != null) {
-            val count = AngConfigManager.importBatchConfig(decodedUrl, "", false)
-            if (count > 0) {
+            val (count, countSub) = AngConfigManager.importBatchConfig(decodedUrl, "", false)
+            if (count + countSub > 0) {
                 toast(R.string.import_subscription_success)
             } else {
                 toast(R.string.import_subscription_failure)
