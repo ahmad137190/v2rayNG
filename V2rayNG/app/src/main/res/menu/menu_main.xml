@@ -2,6 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/search_view"
+        android:icon="@drawable/ic_outline_filter_alt_24"
+        android:title="@string/menu_item_search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+    <item
         android:icon="@drawable/ic_add_24dp"
         android:title="@string/menu_item_add_config"
         app:showAsAction="ifRoom">
@@ -31,12 +37,20 @@
                 android:title="@string/menu_item_import_config_manually_socks"
                 app:showAsAction="never" />
             <item
+                android:id="@+id/import_manually_http"
+                android:title="@string/menu_item_import_config_manually_http"
+                app:showAsAction="never" />
+            <item
                 android:id="@+id/import_manually_trojan"
                 android:title="@string/menu_item_import_config_manually_trojan"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/import_manually_wireguard"
                 android:title="@string/menu_item_import_config_manually_wireguard"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/import_manually_hysteria2"
+                android:title="@string/menu_item_import_config_manually_hysteria2"
                 app:showAsAction="never" />
 
             <item

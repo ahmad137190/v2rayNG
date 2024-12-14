@@ -4,7 +4,7 @@
     <item
         android:icon="@drawable/ic_add_24dp"
         android:title="@string/menu_item_add_asset"
-        app:showAsAction="ifRoom" >
+        app:showAsAction="ifRoom">
         <menu>
             <item
                 android:id="@+id/add_file"
@@ -13,6 +13,10 @@
             <item
                 android:id="@+id/add_url"
                 android:title="@string/menu_item_add_url"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/add_qrcode"
+                android:title="@string/menu_item_scan_qrcode"
                 app:showAsAction="never" />
         </menu>
     </item>

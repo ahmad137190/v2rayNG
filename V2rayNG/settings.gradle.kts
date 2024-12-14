@@ -1,9 +1,14 @@
 pluginManagement {
     repositories {
-        maven { url = uri("https://maven.google.com") }
-        gradlePluginPortal()
-        google()
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 dependencyResolutionManagement {
@@ -17,5 +22,6 @@ dependencyResolutionManagement {
 
     }
 }
-rootProject.name = "V2rayNG"
+
+rootProject.name = "v2rayNG"
 include(":app")

@@ -26,9 +26,8 @@
         <item>kcp</item>
         <item>ws</item>
         <item>httpupgrade</item>
-        <item>splithttp</item>
+        <item>xhttp</item>
         <item>h2</item>
-        <item>quic</item>
         <item>grpc</item>
     </string-array>
 
@@ -49,7 +48,7 @@
     <string-array name="mode_type_grpc" translatable="false">
         <item>gun</item>
         <item>multi</item>
- <!--Hide this option until core support it       <item>guna</item>-->
+        <!--Hide this option until core support it       <item>guna</item>-->
     </string-array>
 
     <string-array name="streamsecuritys" translatable="false">
@@ -97,14 +96,6 @@
         <item></item>
         <item>true</item>
         <item>false</item>
-    </string-array>
-
-    <string-array name="routing_mode_value" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
     </string-array>
 
     <string-array name="routing_domain_strategy" translatable="false">
@@ -179,6 +170,7 @@
         <item>فارسی</item>
         <item>عربي</item>
         <item>বাংলা</item>
+        <item>لۊری بختیاری</item>
     </string-array>
 
 
@@ -192,6 +184,7 @@
         <item>fa</item>
         <item>ar</item>
         <item>bn</item>
+        <item>bqi-rIR</item>
     </string-array>
 
     <string-array name="mux_xudp_quic_value" translatable="false">
@@ -204,5 +197,18 @@
         <item>0</item>
         <item>1</item>
         <item>2</item>
+    </string-array>
+
+    <string-array name="outbound_tag" translatable="false">
+        <item>proxy</item>
+        <item>direct</item>
+        <item>block</item>
+    </string-array>
+
+    <string-array name="xhttp_mode" translatable="false">
+        <item>auto</item>
+        <item>packet-up</item>
+        <item>stream-up</item>
+        <item>stream-one</item>
     </string-array>
 </resources>
